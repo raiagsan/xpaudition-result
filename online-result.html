@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pengumuman Audisi Online — XPTEAM</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background-color: #0a0a0a;
+        color: #ffffff;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .wrapper {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 0 1.5rem 2rem;
+      }
+
+      /* ── Header ── */
+      header {
+        text-align: center;
+        padding: 4.5rem 0 3rem;
+      }
+
+      .congrats-title {
+        font-size: clamp(32px, 5.5vw, 58px);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 0.4rem;
+        color: #e8000e;
+        letter-spacing: -0.01em;
+      }
+
+      .congrats-sub {
+        font-size: clamp(18px, 3vw, 32px);
+        font-weight: 400;
+        color: #ffffff;
+        line-height: 1.2;
+        margin-bottom: 2rem;
+        letter-spacing: -0.01em;
+      }
+
+      .header-divider {
+        width: 48px;
+        height: 2px;
+        background: #e8000e;
+        margin: 2rem auto;
+        border-radius: 2px;
+      }
+
+      .header-desc {
+        font-size: 15px;
+        color: #999999;
+        font-weight: 300;
+        line-height: 1.75;
+        max-width: 520px;
+        margin: 0 auto 2.5rem;
+      }
+
+      /* ── Stats ── */
+      .stats {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat-num {
+        font-size: 40px;
+        font-weight: 700;
+        color: #e8000e;
+        line-height: 1;
+        display: block;
+      }
+
+      .stat-lbl {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #555555;
+        margin-top: 5px;
+        font-weight: 400;
+      }
+
+      .stat-divider {
+        width: 0.5px;
+        height: 40px;
+        background: #2a2a2a;
+      }
+
+      /* ── Search ── */
+      .search-section {
+        margin-bottom: 2rem;
+      }
+
+      .search-box {
+        position: relative;
+      }
+
+      .search-box svg {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #555;
+        width: 16px;
+        height: 16px;
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 14px 16px 14px 44px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: #ffffff;
+        background: #161616;
+        border: 0.5px solid #2a2a2a;
+        border-radius: 4px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      .search-input::placeholder {
+        color: #444;
+      }
+      .search-input:focus {
+        border-color: #e8000e;
+      }
+
+      /* ── Name grid ── */
+      .name-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 10px;
+        margin-bottom: 2.5rem;
+      }
+
+      .name-card {
+        background: #141414;
+        border: 0.5px solid #232323;
+        border-radius: 4px;
+        padding: 1rem 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        opacity: 0;
+        transform: translateY(8px);
+        animation: fadeUp 0.35s ease forwards;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+
+      .name-card:hover {
+        border-color: #e8000e;
+        background: #1a1212;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #1e1010;
+        border: 0.5px solid #3a1515;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        color: #e8000e;
+        flex-shrink: 0;
+        letter-spacing: 0.02em;
+      }
+
+      .name-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .name-text {
+        font-size: 14px;
+        font-weight: 400;
+        color: #ffffff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .name-num {
+        font-size: 11px;
+        color: #444;
+        margin-top: 2px;
+        font-weight: 300;
+      }
+
+      /* ── No result ── */
+      .no-result {
+        display: none;
+        text-align: center;
+        padding: 4rem 0;
+        color: #444;
+        font-size: 14px;
+        font-weight: 300;
+        grid-column: 1 / -1;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 0.5rem;
+        padding-top: 1rem;
+        border-top: 0.5px solid #1e1e1e;
+      }
+
+      .footer-logo img {
+        height: 60px;
+        width: auto;
+        opacity: 1;
+      }
+
+      .header-desc {
+        margin-bottom: 1rem;
+      }
+
+      .section-title {
+        font-size: 25px;
+        letter-spacing: 0.3em;
+        color: #e8000e;
+        text-align: center;
+        font-weight: 700;
+        margin: 0.8rem 0 1rem;
+      }
+
+      /* stagger */
+      .name-card:nth-child(1) {
+        animation-delay: 0.03s;
+      }
+      .name-card:nth-child(2) {
+        animation-delay: 0.06s;
+      }
+      .name-card:nth-child(3) {
+        animation-delay: 0.09s;
+      }
+      .name-card:nth-child(4) {
+        animation-delay: 0.12s;
+      }
+      .name-card:nth-child(5) {
+        animation-delay: 0.15s;
+      }
+      .name-card:nth-child(6) {
+        animation-delay: 0.18s;
+      }
+      .name-card:nth-child(7) {
+        animation-delay: 0.21s;
+      }
+      .name-card:nth-child(8) {
+        animation-delay: 0.24s;
+      }
+      .name-card:nth-child(9) {
+        animation-delay: 0.27s;
+      }
+      .name-card:nth-child(10) {
+        animation-delay: 0.3s;
+      }
+      .name-card:nth-child(n + 11) {
+        animation-delay: 0.33s;
+      }
+
+      @media (max-width: 540px) {
+        header {
+          padding: 3rem 0 2rem;
+        }
+        .stats {
+          gap: 1.5rem;
+        }
+        .name-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="congrats-title">Congratulations!</h1>
+        <p class="congrats-sub">You've passed the online audition.</p>
+        <div class="header-divider"></div>
+        <p class="header-desc">
+          Selamat kepada seluruh peserta yang telah berhasil melewati tahap
+          seleksi audisi online XPTEAM. Peserta yang lolos audisi online akan
+          segera dihubungi melalui WhatsApp.<br />
+          Berikut adalah nama-nama yang dinyatakan lolos.
+        </p>
+      </header>
+
+      <h2 class="section-title">TALENT</h2>
+      <div class="name-grid" id="talent-list"></div>
+
+      <h2 class="section-title">CREW</h2>
+      <div class="name-grid" id="crew-list"></div>
+    </div>
+
+    <script>
+      const talentNames = [
+        "Ananda Salma Faiza",
+        "Azira Nur Salsabila",
+        "Cheysha Salsabilla Putri",
+        "Clara Christina",
+        "Cyaila Ismailani Fauziah",
+        "Daifa Rizky Kamal",
+        "Devina Ayuliani",
+        "Evan Alexander",
+        "Faisal Putra Prajaya",
+        "Kayla Sufa Pratami",
+        "Laeli Lutpiani",
+        "Lucki Ramdani",
+        "Melanie Diva Maharani",
+        "Michelle Josephine Tumuyu",
+        "Moch Aditya",
+        "Mochammad Ginansyah",
+        "Muhammad Luthfi Naufal",
+        "Nabila Chaira Wijaya",
+        "Nabilla Aprilia Putri Sofiana",
+        "Nadya Sagara Seke",
+        "Niken Meisa Suprianti",
+        "Raden Muhammad Faiz Ridha Saleh Wiradipoetra",
+        "Rashieka Zerlina Jovita",
+        "Reslinda Hasna L",
+        "Sabrina Chairunnisa",
+        "Shaqila Salsabila",
+        "Tony Dwi Januarta",
+        "Velia Hidayat, The",
+        "Wakeysha Tiara Noelani",
+      ];
+
+      const crewNames = [
+        "Julian Wahyu Budiyana",
+        "Muhammad Haqi Ishlahi",
+        "Cheysha Salsabilla Putri",
+        "Windy Dwi Ariyanti",
+        "Bararta Hamza",
+      ];
+
+      const talentList = document.getElementById("talent-list");
+      const crewList = document.getElementById("crew-list");
+
+      function getInitials(name) {
+        return name
+          .split(" ")
+          .map((word) => word[0])
+          .join("")
+          .slice(0, 2)
+          .toUpperCase();
+      }
+
+      function render(data, target) {
+        target.innerHTML = "";
+
+        data.forEach((name) => {
+          const div = document.createElement("div");
+          div.className = "name-card";
+
+          const avatar = document.createElement("div");
+          avatar.className = "avatar";
+          avatar.textContent = getInitials(name);
+
+          const info = document.createElement("div");
+          info.className = "name-info";
+
+          const text = document.createElement("div");
+          text.className = "name-text";
+          text.textContent = name;
+
+          info.appendChild(text);
+          div.appendChild(avatar);
+          div.appendChild(info);
+          target.appendChild(div);
+        });
+      }
+
+      render(talentNames, talentList);
+      render(crewNames, crewList);
+    </script>
+
+    <footer>
+      <div class="footer-logo">
+        <img src="assets/BASE LOGO EXRAL-01.png" alt="XPTEAM Logo" />
+      </div>
+    </footer>
+  </body>
+</html>
