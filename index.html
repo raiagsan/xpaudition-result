@@ -321,6 +321,36 @@
         animation-delay: 0.33s;
       }
 
+      /* ── Responsive Tablet ── */
+      @media (min-width: 641px) and (max-width: 860px) {
+        header {
+          padding: 3rem 0 2rem;
+        }
+
+        .stats {
+          gap: 2rem;
+        }
+
+        .name-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .name-text {
+          white-space: normal;
+          word-break: break-word;
+        }
+
+        .section-title {
+          font-size: 20px;
+          letter-spacing: 0.25em;
+        }
+
+        .wrapper {
+          padding: 0 1.25rem 2rem;
+        }
+      }
+
+      /* ── Responsive Mobile ── */
       @media (max-width: 640px) {
         header {
           padding: 2.5rem 0 1.5rem;
@@ -332,7 +362,7 @@
         }
 
         .name-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr 1fr;
         }
 
         .name-text {
