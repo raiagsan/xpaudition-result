@@ -43,6 +43,8 @@
         margin-bottom: 0.4rem;
         color: #e8000e;
         letter-spacing: -0.01em;
+        opacity: 0;
+        animation: fadeDown 0.6s ease 0.2s forwards;
       }
 
       .congrats-sub {
@@ -52,6 +54,8 @@
         line-height: 1.2;
         margin-bottom: 2rem;
         letter-spacing: -0.01em;
+        opacity: 0;
+        animation: fadeDown 0.6s ease 0.35s forwards;
       }
 
       .header-divider {
@@ -60,6 +64,8 @@
         background: #e8000e;
         margin: 2rem auto;
         border-radius: 2px;
+        opacity: 0;
+        animation: fadeIn 0.6s ease 0.5s forwards;
       }
 
       .header-desc {
@@ -69,6 +75,8 @@
         line-height: 1.75;
         max-width: 520px;
         margin: 0 auto 2.5rem;
+        opacity: 0;
+        animation: fadeDown 0.5s ease 0.6s forwards;
       }
 
       /* ── Stats ── */
@@ -168,13 +176,15 @@
         transform: translateY(8px);
         animation: fadeUp 0.35s ease forwards;
         transition:
-          border-color 0.2s,
-          background 0.2s;
+          border-color 0.25s,
+          background 0.25s,
+          transform 0.2s;
       }
 
       .name-card:hover {
         border-color: #e8000e;
         background: #1a1212;
+        transform: translateY(-2px);
       }
 
       @keyframes fadeUp {
@@ -238,6 +248,7 @@
         display: flex;
         justify-content: center;
         margin-bottom: 1.5rem;
+        animation: scaleIn 0.6s ease forwards;
       }
 
       .header-logo img {
@@ -250,6 +261,8 @@
         margin-top: 0.1rem;
         padding-top: 1rem;
         border-top: 0.5px solid #1e1e1e;
+        opacity: 0;
+        animation: fadeIn 0.8s ease 0.9s forwards;
       }
 
       .footer-logo img {
@@ -269,6 +282,8 @@
         text-align: center;
         font-weight: 700;
         margin: 0.8rem 0 1rem;
+        opacity: 0;
+        animation: fadeIn 0.6s ease 0.7s forwards;
       }
 
       /* stagger */
@@ -332,6 +347,37 @@
 
         .wrapper {
           padding: 0 1rem 2rem;
+        }
+      }
+
+      @keyframes fadeDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.85);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
         }
       }
     </style>
