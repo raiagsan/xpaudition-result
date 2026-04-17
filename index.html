@@ -157,6 +157,7 @@
 
       .name-card {
         background: #141414;
+        min-width: 0;
         border: 0.5px solid #232323;
         border-radius: 4px;
         padding: 1rem 1.1rem;
@@ -202,6 +203,8 @@
       .name-info {
         flex: 1;
         min-width: 0;
+        overflow: hidden;
+        word-break: break-word;
       }
 
       .name-text {
@@ -231,15 +234,26 @@
         grid-column: 1 / -1;
       }
 
+      .header-logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .header-logo img {
+        height: 50px;
+        width: auto;
+      }
+
       footer {
         text-align: center;
-        margin-top: 0.5rem;
+        margin-top: 0.1rem;
         padding-top: 1rem;
         border-top: 0.5px solid #1e1e1e;
       }
 
       .footer-logo img {
-        height: 60px;
+        height: 90px;
         width: auto;
         opacity: 1;
       }
@@ -292,15 +306,32 @@
         animation-delay: 0.33s;
       }
 
-      @media (max-width: 540px) {
+      @media (max-width: 640px) {
         header {
-          padding: 3rem 0 2rem;
+          padding: 2.5rem 0 1.5rem;
         }
+
         .stats {
-          gap: 1.5rem;
+          gap: 1rem;
+          flex-wrap: wrap;
         }
+
         .name-grid {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
+        }
+
+        .name-text {
+          white-space: normal;
+          word-break: break-word;
+        }
+
+        .section-title {
+          font-size: 18px;
+          letter-spacing: 0.2em;
+        }
+
+        .wrapper {
+          padding: 0 1rem 2rem;
         }
       }
     </style>
@@ -308,6 +339,10 @@
   <body>
     <div class="wrapper">
       <header>
+        <div class="header-logo">
+          <img src="assets/AUDITION W.png" alt="AUDITION LOGO" />
+        </div>
+
         <h1 class="congrats-title">Congratulations!</h1>
         <p class="congrats-sub">You've passed the online audition.</p>
         <div class="header-divider"></div>
@@ -319,17 +354,14 @@
         </p>
       </header>
 
-      <h2 class="section-title">TALENT</h2>
-      <div class="name-grid" id="talent-list"></div>
-
-      <h2 class="section-title">CREW</h2>
-      <div class="name-grid" id="crew-list"></div>
+      <div class="name-grid" id="name"></div>
     </div>
 
     <script>
-      const talentNames = [
+      const names = [
         "Ananda Salma Faiza",
         "Azira Nur Salsabila",
+        "Bararta Hamza",
         "Cheysha Salsabilla Putri",
         "Clara Christina",
         "Cyaila Ismailani Fauziah",
@@ -337,6 +369,7 @@
         "Devina Ayuliani",
         "Evan Alexander",
         "Faisal Putra Prajaya",
+        "Julian Wahyu Budiyana",
         "Kayla Sufa Pratami",
         "Laeli Lutpiani",
         "Lucki Ramdani",
@@ -344,6 +377,7 @@
         "Michelle Josephine Tumuyu",
         "Moch Aditya",
         "Mochammad Ginansyah",
+        "Muhammad Haqi Ishlahi",
         "Muhammad Luthfi Naufal",
         "Nabila Chaira Wijaya",
         "Nabilla Aprilia Putri Sofiana",
@@ -357,18 +391,10 @@
         "Tony Dwi Januarta",
         "Velia Hidayat, The",
         "Wakeysha Tiara Noelani",
-      ];
-
-      const crewNames = [
-        "Julian Wahyu Budiyana",
-        "Muhammad Haqi Ishlahi",
-        "Cheysha Salsabilla Putri",
         "Windy Dwi Ariyanti",
-        "Bararta Hamza",
       ];
 
-      const talentList = document.getElementById("talent-list");
-      const crewList = document.getElementById("crew-list");
+      const nameList = document.getElementById("name");
 
       function getInitials(name) {
         return name
@@ -404,8 +430,7 @@
         });
       }
 
-      render(talentNames, talentList);
-      render(crewNames, crewList);
+      render(names, nameList);
     </script>
 
     <footer>
